@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Project | High Altitude Study</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header class="metadata">
+            Graham & Walsh: The Archaeology Impossible Project
+        </header>
+
+        <article id="content">
+            <p class="loading">Initializing data stream...</p>
+        </article>
+
+        <footer>
+            April 16, 2026.
+        </footer>
+    </div>
+
+    <script>
+        async function fetchContent() {
+            try {
+                const response = await fetch('content.md');
+                if (!response.ok) throw new Error('File not found');
+                const text = await response.text();
+                
+                marked.setOptions({ gfm: true, breaks: true });
+                document.getElementById('content').innerHTML = marked.parse(text);
+            } catch (e) {
+                document.getElementById('content').innerHTML = 
+                `<div class="error"><strong>Access Error:</strong> ${e.message}.<br> 
+                Ensure you are using a local server or GitHub Pages.</div>`;
+            }
+        }
+        fetchContent();
+    </script>
+</body>
+</html>
