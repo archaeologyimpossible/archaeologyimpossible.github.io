@@ -49,6 +49,8 @@ We intend to involve students in the MA History, Digital Humanities, and Data Sc
 ---
 
 ## Significance & Future Applications
+Computer vision has been deployed in a number of archaeological contexts. Drawing on the work of the [International Space Station Archaeological Project]() we deploy it here as our primary means of examining the 'site' and its changes over time, a place that we are unlikely ourselves to ever be able to visit. 
+
 While climate change is not the primary focus, our tools help examine human adaptation to extreme environments. As the climate renders more of the Earth "extreme," these methodologies provide a critical foundation for understanding how human societies structure themselves under environmental stress.
 
 **Principal Investigators:** [Dr. Shawn Graham (Carleton U)](https://shawngraham.github.io) & [Dr Justin Walsh (Chapman U)](https://www.chapman.edu/our-faculty/justin-walsh.aspx)

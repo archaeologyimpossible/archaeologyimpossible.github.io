@@ -1,54 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Project | High Altitude Study</title>
-    
-    <!-- External CSS -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Markdown Parser -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archaeology Impossible Project</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts (also pulled via style.css @import as fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-    <div class="container">
-        <header class="metadata">
-            Graham & Walsh: The Archaeology Impossible Project
-        </header>
+  <div class="container">
 
-        <article id="content">
-            <p class="loading">Initializing data stream...</p>
-        </article>
+    <!-- Computer-vision corner frame overlay -->
+    <div class="cv-frame" aria-hidden="true"></div>
 
-        <footer>
-            April 16, 2026.
-        </footer>
-    </div>
+    <!-- ── Metadata bar ── -->
+    <header class="metadata">
+      <div class="metadata-left">
+        Graham &amp; Walsh<br>
+        The Archaeology Impossible Project
+      </div>
+      <div class="metadata-right">
+        <span>Chomolungma: 27°59′18″N 86°55′31″E</span>
+        <span id="epoch">—</span>
+        <span style="margin-top:6px;display:block;">
+          <a class="nav-link" href="updates.html">Field Notes ↗</a>
+        </span>
+      </div>
+    </header>
 
-    <script>
-        async function fetchContent() {
-            try {
-                const response = await fetch('content.md');
-                if (!response.ok) throw new Error('File not found');
-                const text = await response.text();
-                
-                marked.setOptions({ gfm: true, breaks: true });
-                document.getElementById('content').innerHTML = marked.parse(text);
-            } catch (e) {
-                document.getElementById('content').innerHTML = 
-                `<div class="error"><strong>Access Error:</strong> ${e.message}.<br> 
-                Ensure you are using a local server or GitHub Pages.</div>`;
-            }
-        }
-        fetchContent();
-    </script>
+    <!-- ── Main content ── -->
+    <article id="content">
+      <p class="loading">Initialising data stream…</p>
+    </article>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <span>Graham &amp; Walsh 2026</span>
+      <div class="footer-mark" aria-hidden="true"></div>
+      <span>Archaeology Impossible</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Epoch display
+    (function () {
+      const el = document.getElementById('epoch');
+      const d  = new Date();
+      const iso = d.toISOString().slice(0, 10);
+      el.textContent = iso;
+    })();
+
+    // Fetch and render content.md
+    async function fetchContent() {
+      try {
+        const res  = await fetch('content.md');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+
+        marked.setOptions({ gfm: true, breaks: true });
+        document.getElementById('content').innerHTML = marked.parse(text);
+      } catch (e) {
+        document.getElementById('content').innerHTML =
+          `<div class="error"><strong>Access error:</strong> ${e.message}.<br>
+           Serve via a local server or GitHub Pages.</div>`;
+      }
+    }
+
+    fetchContent();
+  </script>
+
 </body>
 </html>

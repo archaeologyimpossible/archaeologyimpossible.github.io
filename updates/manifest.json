@@ -1,0 +1,23 @@
+[
+  {
+    "slug":  "2026-04-16-base-camp",
+    "date":  "2026-04-16",
+    "title": "Base Camp Established",
+    "tag":   "Dispatch",
+    "file":  "updates/2026-04-16-base-camp.md"
+  },
+  {
+    "slug":  "2026-03-28-methodology-notes",
+    "date":  "2026-03-28",
+    "title": "Remote-Sensing Methodology — First Observations",
+    "tag":   "Research",
+    "file":  "updates/2026-03-28-methodology-notes.md"
+  },
+  {
+    "slug":  "2026-02-10-project-announcement",
+    "date":  "2026-02-10",
+    "title": "Project Announced",
+    "tag":   "News",
+    "file":  "updates/2026-02-10-project-announcement.md"
+  }
+]

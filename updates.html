@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Notes — Archaeology Impossible Project</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CV corner frame -->
+    <div class="cv-frame" aria-hidden="true"></div>
+
+    <!-- ── Metadata bar ── -->
+    <header class="metadata">
+      <div class="metadata-left">
+        Graham &amp; Walsh<br>
+        The Archaeology Impossible Project
+      </div>
+      <div class="metadata-right">
+        <span>28°N 84°E · 5,364 m</span>
+        <span id="epoch">—</span>
+        <span style="margin-top:6px;display:block;">
+          <a class="nav-link" href="index.html">← Index</a>
+        </span>
+      </div>
+    </header>
+
+    <!-- ── Dynamic content area ── -->
+    <article id="content">
+      <p class="loading">Retrieving field records…</p>
+    </article>
+
+    <!-- ── Footer ── -->
+    <footer>
+      <span>Graham &amp; Walsh 2026</span>
+      <div class="footer-mark" aria-hidden="true"></div>
+      <span>Field Notes</span>
+    </footer>
+
+  </div>
+
+  <script>
+    marked.setOptions({ gfm: true, breaks: true });
+
+    // ── Epoch
+    document.getElementById('epoch').textContent = new Date().toISOString().slice(0, 10);
+
+    // ── Manifest schema (updates/manifest.json):
+    // [
+    //   { "slug": "2026-04-16-base-camp",
+    //     "date": "2026-04-16",
+    //     "title": "Base Camp Established",
+    //     "tag": "Dispatch",
+    //     "file": "updates/2026-04-16-base-camp.md" },
+    //   …
+    // ]
+
+    const MANIFEST = 'updates/manifest.json';
+
+    // ── Routing: hash = slug of entry, empty = list
+    function getSlug() {
+      return location.hash.replace(/^#/, '').trim() || '';
+    }
+
+    // ── Render the index list
+    async function renderList(entries) {
+      const contentEl = document.getElementById('content');
+
+      // Sort newest-first
+      const sorted = [...entries].sort((a, b) => b.date.localeCompare(a.date));
+
+      const listItems = sorted.map(e => `
+        <li class="update-entry" data-slug="${e.slug}" role="link" tabindex="0"
+            aria-label="${e.date}: ${e.title}">
+          <span class="update-date">${formatDate(e.date)}</span>
+          <span class="update-title">
+            ${escapeHtml(e.title)}
+            ${e.tag ? `<span class="update-tag">${escapeHtml(e.tag)}</span>` : ''}
+          </span>
+        </li>`).join('');
+
+      contentEl.innerHTML = `
+        <div class="page-section">
+          <h2 style="margin-top:0;">Field Notes</h2>
+          <ul class="updates-list">${listItems}</ul>
+        </div>`;
+
+      // Attach click + keyboard handlers
+      contentEl.querySelectorAll('.update-entry').forEach(el => {
+        const slug = el.dataset.slug;
+        el.addEventListener('click', () => navigateTo(slug));
+        el.addEventListener('keydown', ev => {
+          if (ev.key === 'Enter' || ev.key === ' ') navigateTo(slug);
+        });
+      });
+    }
+
+    // ── Render a single update
+    async function renderEntry(entry) {
+      const contentEl = document.getElementById('content');
+      contentEl.innerHTML = `<p class="loading">Loading ${entry.title}…</p>`;
+
+      try {
+        const res = await fetch(entry.file);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+
+        contentEl.innerHTML = `
+          <div class="page-section">
+            <a class="back-link" id="back-btn">
+              <span class="back-arrow">←</span> All field notes
+            </a>
+            <div id="md-content">${marked.parse(text)}</div>
+          </div>`;
+
+        document.getElementById('back-btn').addEventListener('click', () => navigateTo(''));
+      } catch (e) {
+        contentEl.innerHTML =
+          `<div class="error"><strong>Load error:</strong> ${e.message}</div>
+           <a class="back-link" id="back-btn"><span class="back-arrow">←</span> Back</a>`;
+        document.getElementById('back-btn').addEventListener('click', () => navigateTo(''));
+      }
+    }
+
+    // ── Navigation
+    function navigateTo(slug) {
+      history.pushState(null, '', slug ? `#${slug}` : location.pathname);
+      route();
+    }
+
+    // ── Main router
+    let manifest = null;
+
+    async function route() {
+      const contentEl = document.getElementById('content');
+
+      // Load manifest once
+      if (!manifest) {
+        try {
+          const res = await fetch(MANIFEST);
+          if (!res.ok) throw new Error(`Cannot load manifest (HTTP ${res.status})`);
+          manifest = await res.json();
+        } catch (e) {
+          contentEl.innerHTML =
+            `<div class="error"><strong>Manifest error:</strong> ${e.message}<br>
+             Create <code>updates/manifest.json</code> — see inline comments for schema.</div>`;
+          return;
+        }
+      }
+
+      const slug = getSlug();
+
+      if (!slug) {
+        renderList(manifest);
+        return;
+      }
+
+      const entry = manifest.find(e => e.slug === slug);
+      if (!entry) {
+        contentEl.innerHTML =
+          `<div class="error">No field note found for slug <code>${escapeHtml(slug)}</code>.</div>
+           <a class="back-link" id="back-btn"><span class="back-arrow">←</span> All notes</a>`;
+        document.getElementById('back-btn').addEventListener('click', () => navigateTo(''));
+        return;
+      }
+
+      renderEntry(entry);
+    }
+
+    // ── Helpers
+    function formatDate(iso) {
+      const [y, m, d] = iso.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun',
+                      'Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${d} ${months[+m - 1]} ${y}`;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+              .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    // ── Listen for browser back/forward
+    window.addEventListener('popstate', route);
+
+    // ── Boot
+    route();
+  </script>
+
+</body>
+</html>

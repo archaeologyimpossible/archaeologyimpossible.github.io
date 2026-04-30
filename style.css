@@ -1,181 +1,484 @@
-/* 1. Variables & Design Tokens */
+/* ─── 1. Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ─── 2. Design Tokens ──────────────────────────────────────────── */
 :root {
-    --paper: #fdfcf9;       /* Natural archival paper */
-    --ink: #1a1c1e;         /* Deep charcoal ink */
-    --slate: #5a677a;       /* Weathered rock */
-    --accent: #2d4a63;      /* Glacial blue */
-    --rule: #dce3e8;        /* Thin elevation line */
-    --grid: #bccee0;        /* Survey map blue */
-    --bg-env: #eef1f3;      /* Stark mist background */
+  /* Surface */
+  --paper:      #f5f7f9;    /* Glacier field — cold white */
+  --paper-warm: #fdfcf9;    /* Archival insert */
+  --bg-env:     #dde4ea;    /* Aerial mist */
+
+  /* Type */
+  --ink:        #191d22;    /* Surveyor's ink */
+  --slate:      #4d5f72;    /* Weathered slate */
+  --dim:        #8a9aaa;    /* Distant ridge */
+
+  /* Brand */
+  --accent:     #1a5f8e;    /* Deep glacier blue */
+  --ice:        #90c5df;    /* Crevasse surface */
+  --reticle:    #3a8fbf;    /* Targeting channel */
+
+  /* Structure */
+  --rule:       #c8d5df;    /* Survey line */
+  --rule-light: #dde6ec;
+
+  /* CV overlay */
+  --bracket:    rgba(58,143,191,0.45);
+  --scan:       rgba(58,143,191,0.03);
 }
 
-/* 2. Base Reset & Environment */
-* { box-sizing: border-box; }
+/* ─── 3. Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    margin: 0;
-    background-color: var(--bg-env);
-    /* Subtle topographic/graph-paper grid */
-    background-image: radial-gradient(var(--grid) 0.5px, transparent 0.5px);
-    background-size: 32px 32px;
-    color: var(--ink);
-    font-family: 'Libre Baskerville', serif;
-    line-height: 1.8;
-    -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-env);
+  /* Contour-map grid — two orthogonal frequencies */
+  background-image:
+    linear-gradient(var(--rule-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-light) 1px, transparent 1px),
+    linear-gradient(rgba(144,197,223,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(144,197,223,0.12) 1px, transparent 1px);
+  background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
+  color: var(--ink);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  line-height: 1.82;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-/* 3. The Manuscript Container */
+/* ─── 4. Layout Container ───────────────────────────────────────── */
 .container {
-    max-width: 820px;
-    margin: 60px auto;
-    background: var(--paper);
-    padding: 80px 100px;
-    /* Stacked paper shadow effect */
-    box-shadow: 
-        1px 1px 0px var(--rule),
-        10px 10px 0px rgba(45, 74, 99, 0.05),
-        20px 20px 0px rgba(45, 74, 99, 0.03);
-    border: 1px solid var(--rule);
-    position: relative;
+  max-width: 820px;
+  margin: 56px auto;
+  background: var(--paper);
+  padding: 72px 96px;
+  border: 1px solid var(--rule);
+  /* Paper stack shadow */
+  box-shadow:
+    0 0 0 1px var(--rule-light),
+    8px 8px 0 rgba(26,95,142,0.04),
+    16px 16px 0 rgba(26,95,142,0.025);
+  position: relative;
 }
 
-/* 4. Metadata (Header & Footer) */
-.metadata, footer {
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: var(--slate);
+/* ── Computer-vision corner brackets ── */
+.container::before,
+.container::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+.container::before {
+  top: -1px; left: -1px;
+  border-top: 2px solid var(--bracket);
+  border-left: 2px solid var(--bracket);
+}
+.container::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 2px solid var(--bracket);
+  border-right: 2px solid var(--bracket);
+}
+/* Two more via a child pseudo-wrapper */
+.container .cv-frame::before,
+.container .cv-frame::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+.container .cv-frame::before {
+  top: -1px; right: -1px;
+  border-top: 2px solid var(--bracket);
+  border-right: 2px solid var(--bracket);
+}
+.container .cv-frame::after {
+  bottom: -1px; left: -1px;
+  border-bottom: 2px solid var(--bracket);
+  border-left: 2px solid var(--bracket);
+}
+/* Invisible full-size overlay div that carries the other two corners */
+.cv-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
+/* ─── 5. Metadata Bar ───────────────────────────────────────────── */
 .metadata {
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 25px;
-    margin-bottom: 60px;
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 22px;
+  margin-bottom: 56px;
+  gap: 12px;
 }
 
+.metadata-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+.metadata-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  text-align: right;
+  line-height: 1.8;
+  flex-shrink: 0;
+}
+
+.metadata-right span {
+  display: block;
+}
+
+/* Nav link inside metadata */
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--reticle);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+  padding-bottom: 1px;
+}
+.nav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--ice);
+}
+
+/* ─── 6. Footer ─────────────────────────────────────────────────── */
 footer {
-    margin-top: 80px;
-    padding-top: 40px;
-    border-top: 1px solid var(--rule);
-    text-align: center;
-    opacity: 0.7;
+  margin-top: 72px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
 }
 
-/* 5. Typography Hierarchy */
+.footer-mark {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--bracket);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+.footer-mark::before,
+.footer-mark::after {
+  content: '';
+  position: absolute;
+  background: var(--bracket);
+}
+.footer-mark::before {
+  width: 1px; height: 5px;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.footer-mark::after {
+  width: 5px; height: 1px;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/* ─── 7. Article Typography ─────────────────────────────────────── */
+
 #content h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 700;
-    font-size: 3.2rem;
-    line-height: 1.05;
-    margin: 0 0 0.5rem 0;
-    text-align: left;
-    color: var(--ink);
-    /* Subtle variable font tweak for an 'inkier' look */
-    font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-size: 3rem;
+  line-height: 1.06;
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* Subhead / dateline below h1 */
+#content h1 + p em:first-child,
+.dateline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-style: normal;
+  display: block;
+  margin-bottom: 2.8rem;
+  margin-top: -0.2rem;
 }
 
 #content h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 1.75rem;
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-top: 3.6rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  letter-spacing: -0.01em;
 }
-
 #content h2::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-    margin-left: 20px;
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  margin-left: 18px;
 }
 
 #content h3 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--slate);
-    text-transform: uppercase;
-    margin-top: 2.5rem;
-    letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--reticle);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 2.2rem;
+  margin-bottom: 0.6rem;
 }
 
 #content p {
-    font-size: 1.05rem;
-    margin-bottom: 1.6rem;
-    text-align: justify;
-    hyphens: auto;
+  font-size: 1.02rem;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+  color: var(--ink);
 }
 
-/* 6. Special Elements (Blockquotes & Lists) */
+/* ─── 8. Blockquote ─────────────────────────────────────────────── */
 #content blockquote {
-    margin: 3rem -100px 3rem -40px; /* Pull-out quote effect */
-    padding: 2rem 40px;
-    background: rgba(45, 74, 99, 0.04);
-    border-left: 4px solid var(--accent);
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--accent);
+  margin: 2.8rem 0 2.8rem -24px;
+  padding: 1.6rem 2rem;
+  background: rgba(26,95,142,0.04);
+  border-left: 3px solid var(--ice);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--accent);
+  position: relative;
+}
+#content blockquote::before {
+  content: attr(data-elevation, '');
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  font-style: normal;
 }
 
-#content ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 2rem 0;
+/* ─── 9. Lists ──────────────────────────────────────────────────── */
+#content ul, #content ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.8rem 0;
+  counter-reset: obs;
 }
-
 #content li {
-    margin-bottom: 1rem;
-    padding-left: 30px;
-    position: relative;
+  margin-bottom: 0.9rem;
+  padding-left: 36px;
+  position: relative;
+  counter-increment: obs;
 }
-
 #content li::before {
-    content: "0" counter(list-item) "/"; /* Technical numbering */
-    position: absolute;
-    left: 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--slate);
-    top: 4px;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--dim);
+  letter-spacing: 0.06em;
 }
+#content ul li::before { content: '—'; }
+#content ol li::before { content: counter(obs, decimal-leading-zero) '.'; }
 
-/* 7. Links & Interactivity */
+/* ─── 10. Links ─────────────────────────────────────────────────── */
 #content a {
-    color: var(--accent);
-    text-decoration: none;
-    background-image: linear-gradient(var(--accent), var(--accent));
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 1px;
-    transition: background-size 0.3s;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ice);
+  transition: border-color 0.2s, color 0.2s;
 }
-
 #content a:hover {
-    background-size: 100% 2px;
+  color: var(--reticle);
+  border-bottom-color: var(--reticle);
 }
 
-/* 8. Responsive Design */
+/* ─── 11. Horizontal Rule ───────────────────────────────────────── */
+#content hr {
+  border: none;
+  height: 1px;
+  background: var(--rule);
+  margin: 3rem 0;
+}
+
+/* ─── 12. Code ──────────────────────────────────────────────────── */
+#content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  background: rgba(26,95,142,0.06);
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+#content pre {
+  background: rgba(25,29,34,0.95);
+  color: #c8dae8;
+  padding: 1.4rem 1.6rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+#content pre code { background: transparent; color: inherit; padding: 0; }
+
+/* ─── 13. Loading / Error States ───────────────────────────────── */
+.loading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+.error {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: #8c3030;
+  background: rgba(140,48,48,0.05);
+  border-left: 3px solid rgba(140,48,48,0.4);
+  padding: 1rem 1.2rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1;   }
+}
+
+/* ─── 14. Updates-specific ──────────────────────────────────────── */
+.updates-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.update-entry {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0 24px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-light);
+  text-decoration: none;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.update-entry:hover { background: rgba(26,95,142,0.03); }
+
+.update-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  text-transform: uppercase;
+  padding-top: 3px;
+}
+
+.update-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.update-entry:hover .update-title {
+  color: var(--reticle);
+}
+
+.update-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid var(--rule);
+  padding: 1px 6px;
+  border-radius: 1px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Back link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--reticle);
+  text-decoration: none;
+  margin-bottom: 2.8rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.back-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--ice);
+}
+.back-arrow {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* Page section transitions */
+.page-section {
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ─── 15. Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .container {
-        margin: 0;
-        padding: 60px 40px;
-        box-shadow: none;
-        border: none;
-    }
-    #content blockquote {
-        margin: 2rem 0;
-    }
-    #content p {
-        text-align: left;
-    }
-    #content h1 {
-        font-size: 2.4rem;
-    }
+  .container {
+    margin: 0;
+    padding: 48px 28px;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+  }
+  #content blockquote { margin-left: 0; }
+  #content p { text-align: left; hyphens: none; }
+  #content h1 { font-size: 2.2rem; }
+  .metadata { flex-direction: column; gap: 8px; }
+  .metadata-right { text-align: left; }
+  .footer { flex-direction: column; gap: 8px; text-align: center; }
+  .update-entry { grid-template-columns: 1fr; gap: 2px; }
+  .update-date { font-size: 0.6rem; }
 }
