@@ -12,6 +12,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    .entry-meta {
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .entry-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b6b6b;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .entry-title {
+      font-family: 'Fraunces', 'Libre Baskerville', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.9rem 0;
+      color: #141414;
+    }
+    .entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: #f3f2ed;
+      color: #444;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      border: 1px solid #e4e3dc;
+    }
+  </style>
 </head>
 <body>
 
@@ -30,7 +73,7 @@
         <span>28°N 84°E · 5,364 m</span>
         <span id="epoch">—</span>
         <span style="margin-top:6px;display:block;">
-          <a class="nav-link" href="index.html">← Index</a>
+          <a class="nav-link" href="index.html">← Home</a>
         </span>
       </div>
     </header>
@@ -105,6 +148,39 @@
       });
     }
 
+    // ── Frontmatter helpers
+    function splitFrontmatter(text) {
+      const clean = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      if (!clean.startsWith('---\n')) return { data: {}, body: text };
+      const end = clean.indexOf('\n---\n', 4);
+      if (end === -1) return { data: {}, body: text };
+
+      const block = clean.slice(4, end);
+      const body  = clean.slice(end + 5);
+      const data  = {};
+
+      for (const line of block.split('\n')) {
+        const idx = line.indexOf(':');
+        if (idx === -1) continue;
+        const key   = line.slice(0, idx).trim();
+        let   value = line.slice(idx + 1).trim();
+        // Strip surrounding quotes if present
+        if ((value.startsWith('"') && value.endsWith('"')) ||
+            (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        data[key] = value;
+      }
+      return { data, body };
+    }
+
+    function parseTags(raw) {
+      if (!raw) return [];
+      let s = raw.trim();
+      if (s.startsWith('[') && s.endsWith(']')) s = s.slice(1, -1);
+      return s.split(',').map(t => t.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+    }
+
     // ── Render a single update
     async function renderEntry(entry) {
       const contentEl = document.getElementById('content');
@@ -115,12 +191,28 @@
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
 
+        // Strip YAML frontmatter before Markdown parsing
+        const { data, body } = splitFrontmatter(text);
+
+        const title = data.title || entry.title;
+        const date  = data.date  || entry.date;
+        const tags  = parseTags(data.tags || entry.tag || '');
+
+        const tagPills = tags.length
+          ? `<div class="entry-tags">${tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+          : '';
+
         contentEl.innerHTML = `
           <div class="page-section">
             <a class="back-link" id="back-btn">
               <span class="back-arrow">←</span> All field notes
             </a>
-            <div id="md-content">${marked.parse(text)}</div>
+            <div class="entry-meta">
+              <time class="entry-date">${formatDate(date)}</time>
+              <h1 class="entry-title">${escapeHtml(title)}</h1>
+              ${tagPills}
+            </div>
+            <div id="md-content">${marked.parse(body)}</div>
           </div>`;
 
         document.getElementById('back-btn').addEventListener('click', () => navigateTo(''));
@@ -196,6 +288,5 @@
     // ── Boot
     route();
   </script>
-
 </body>
 </html>
