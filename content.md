@@ -62,3 +62,4 @@ Results will contribute to mountaineering history, environmental anthropology, d
 **Principal Investigators:** [Dr. Shawn Graham (Carleton U)](https://shawngraham.github.io) & [Dr Justin Walsh (Chapman U)](https://www.chapman.edu/our-faculty/justin-walsh.aspx)
 **Collaboratory:** [The XLab at Carleton University](https://carleton.ca/xlab/)
 
+**Contact us:** archaeology.impossible@gmail.com
