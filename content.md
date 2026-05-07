@@ -13,8 +13,8 @@ The **Archaeology Impossible Project** translates methodologies developed for th
 ### Project Objectives
 We have three goals:
 
-+ **Quantifying/Qualifying Material Change:** Develop computer vision models to map and track material culture changes along Chomolungma's climbing routes (1953–2025). 
-+ **Computational Synthesis:** Create a temporal knowledge graph and vector embedding models to enable natural language querying of complex archaeological patterns.
++ **Quantifying/Qualifying Material Change:** Develop computer vision models to map and track material culture changes along Chomolungma's climbing routes (1920s–2020s). 
++ **Computational Synthesis:** Create a temporal knowledge graph, vector embedding models, and other machine learning outputs, to enable natural language querying of complex archaeological patterns, distant views and distant reads of this material.
 + **Knowledge Mobilization:** Design immersive "archaeogaming" experiences that translate those computational models into engaging public interfaces for further research and social impact.
 
 ---
@@ -23,7 +23,7 @@ We have three goals:
 ### The Contemporary Archive of Ascent
 Historically, mountaineering has served as a Western metaphor for civilization’s triumph over nature. From the early colonial expeditions to today’s commercialized industry, the "conquest" of 'Everest' represents an ongoing performance of Western masculinity and nationalism. 
 
-Unlike many traditional archaeological approaches, which foreground excavation, this project treats the mountain as a **bounded environment**, much like the International Space Station, where human engagement leaves distinct material signatures despite the impracticality of physical fieldwork. Like outer space, humans have no real business 'inhabiting' the high altitudes of Chomolungma. So what do these societies look like, archaeologically?
+Unlike many traditional archaeological approaches, which foreground excavation, this project treats the mountain as a bounded environment, much like the International Space Station, where human engagement leaves distinct material signatures despite the impracticality of physical fieldwork. Like outer space, humans have no real business 'inhabiting' the high altitudes of Chomolungma. So what do these societies look like, archaeologically?
 
 
 ---
@@ -33,7 +33,7 @@ Unlike many traditional archaeological approaches, which foreground excavation, 
 This project is funded by a SSHRC Insight Grant, terminating in 2031.
 
 ### Phase I: The Digital Fieldwork
-We aggregate data from archival expedition photography, climbing literature, and public social media posts. Using **Segment Anything (SAM)** and custom computer vision models, we identify equipment, shelter, waste, and infrastructure across seven decades of imagery, geolocating photos and views.
+We aggregate data from archival expedition photography, climbing literature, and public social media posts. Using **Segment Anything (SAM)** or similar approaches and custom computer vision models, we identify equipment, shelter, waste, and infrastructure across decades of imagery, geolocating photos and views.
 
 ### Phase II: The Computational Lab
 Data is ingested into a **Temporal Knowledge Graph**. This is then transformed via neural networks into **Vector Embedding Models**. This allows researchers to ask "fuzzy" queries like:
@@ -53,9 +53,9 @@ Computer vision has been deployed in a number of archaeological contexts. Drawin
 
 This project expands archaeological possibilities by demonstrating how computational methods can study contemporary material culture in physically inaccessible environments. It pushes the integration of computer vision, knowledge graphs, embedding models, and immersive communication within archaeological practice, creating new pathways for research in extreme environments globally.
 
-We aim to reveal the material signatures of Western neo-colonization and commercialization on Everest. Douglas Freshfield wrote in 1926 that mountaineering had helped other sciences—and asked then ‘why not archaeology?’ This project answers that call. The methodological innovations developed here can be applied to other extreme environments from polar research stations to disaster zones, expanding archaeology's capacity to study human-environment relationships under stress.
+We aim to reveal the material signatures of Western neo-colonization and commercialization on Everest. Douglas Freshfield wrote in 1926 that mountaineering had helped other sciences—and then asked, ‘why not archaeology?’ So here we are. The methodological innovations developed here could be applied to other extreme environments from polar research stations to disaster zones, expanding archaeology's capacity to study human-environment relationships under stress.
 
-The immersive communication methods pioneer new approaches to archaeological knowledge mobilization, demonstrating how computational models can be translated into engaging experiences that foster public understanding of environmental and colonial issues. This addresses critical gaps in how archaeological knowledge reaches broader audiences and mobilizes action on contemporary challenges.
+The immersive communication methods will develop new approaches to archaeological knowledge mobilization, demonstrating how computational models can be translated into engaging experiences that foster public understanding of environmental and colonial issues. We aim to address critical gaps in how archaeological knowledge reaches broader audiences and mobilizes action on contemporary challenges.
 
 Results will contribute to mountaineering history, environmental anthropology, digital humanities, and policy discussions about managing human impacts in extreme environments. The project establishes computational archaeology as a viable approach for studying contemporary material culture while developing practical tools for understanding human adaptation under environmental stress. These experiences aim to foster “enchantment” in the political theorist Jane Bennett’s sense (2001) and Perry’s archaeological application (2019): moving people into action through engagement with material evidence of environmental exploitation and neo-colonial appropriation.
 
