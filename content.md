@@ -2,18 +2,18 @@
 <br>
 
 # _Methods for Impractical Places_
-## The Chomolungma Case Study
+## Chomolungma / Sagarmāthā / Everest
 
-Extreme environments like Mt. Everest offer unique insights into human behavior under duress. But how do we conduct archaeology in places where archaeologists cannot physically go? 
+Extreme environments like Chomolungma (Mt. Everest) offer unique insights into human behavior under duress. But how do we conduct archaeology in places where archaeologists cannot physically go? 
 
-The **Archaeology Impossible Project** translates methodologies developed for the International Space Station Archaeological Project [(ISSAP)](https://issarchaeology.org/) back to Earth. By focusing on Chomolungma (Mt. Everest), we explore human impact, neo-colonial appropriation, and the "conquest" of extreme environments through the lens of contemporary digital archaeology.
+The **Archaeology Impossible Project** translates methodologies developed for the International Space Station Archaeological Project [(ISSAP)](https://issarchaeology.org/) back to Earth. By focusing on Chomolungma, we explore human impact, neo-colonial appropriation, and the "conquest" of extreme environments through the lens of contemporary digital archaeology.
 
 ---
 
 ### Project Objectives
 We have three goals:
 
-+ **Quantifying/Qualifying Material Change:** Develop computer vision models to map and track material culture changes along Everest's climbing routes (1953–2025). 
++ **Quantifying/Qualifying Material Change:** Develop computer vision models to map and track material culture changes along Chomolungma's climbing routes (1953–2025). 
 + **Computational Synthesis:** Create a temporal knowledge graph and vector embedding models to enable natural language querying of complex archaeological patterns.
 + **Knowledge Mobilization:** Design immersive "archaeogaming" experiences that translate those computational models into engaging public interfaces for further research and social impact.
 
@@ -59,7 +59,14 @@ The immersive communication methods pioneer new approaches to archaeological kno
 
 Results will contribute to mountaineering history, environmental anthropology, digital humanities, and policy discussions about managing human impacts in extreme environments. The project establishes computational archaeology as a viable approach for studying contemporary material culture while developing practical tools for understanding human adaptation under environmental stress. These experiences aim to foster “enchantment” in the political theorist Jane Bennett’s sense (2001) and Perry’s archaeological application (2019): moving people into action through engagement with material evidence of environmental exploitation and neo-colonial appropriation.
 
+## People & Support
+
 **Principal Investigators:** [Dr. Shawn Graham (Carleton U)](https://shawngraham.github.io) & [Dr Justin Walsh (Chapman U)](https://www.chapman.edu/our-faculty/justin-walsh.aspx)
+
 **Collaboratory:** [The XLab at Carleton University](https://carleton.ca/xlab/)
 
 **Contact us:** archaeology.impossible@gmail.com
+
+**Acknowledgements** This project draws on research supported by the Social Sciences and Humanities Research Council of Canada.
+
+<img src="sshrc-fip-full-color-eng.png" width = 100% align=center>
