@@ -63,6 +63,10 @@ The immersive communication methods will develop new approaches to archaeologica
 
 Results will contribute to mountaineering history, environmental anthropology, digital humanities, and policy discussions about managing human impacts in extreme environments. The project establishes computational archaeology as a viable approach for studying contemporary material culture while developing practical tools for understanding human adaptation under environmental stress. These experiences aim to foster “enchantment” in the political theorist Jane Bennett’s sense (2001) and Perry’s archaeological application (2019): moving people into action through engagement with material evidence of environmental exploitation and neo-colonial appropriation.
 
+<div align="center"><img src="sylwia-bartyzel-amAhBrvmVQc-unsplash.jpg"></div>
+
+_Photo by <a href="https://unsplash.com/@sylwiabartyzel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sylwia Bartyzel</a> on <a href="https://unsplash.com/photos/rocky-mountain-covered-with-snow-during-daytime-amAhBrvmVQc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>_
+
 ## People & Support
 
 **Principal Investigators:** [Dr. Shawn Graham (Carleton U)](https://shawngraham.github.io) & [Dr Justin Walsh (Chapman U)](https://www.chapman.edu/our-faculty/justin-walsh.aspx)
