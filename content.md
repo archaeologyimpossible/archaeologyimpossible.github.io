@@ -25,6 +25,10 @@ Historically, mountaineering has served as a Western metaphor for civilizationâ€
 
 Unlike many traditional archaeological approaches, which foreground excavation, this project treats the mountain as a bounded environment, much like the International Space Station, where human engagement leaves distinct material signatures despite the impracticality of physical fieldwork. Like outer space, humans have no real business 'inhabiting' the high altitudes of Chomolungma. So what do these societies look like, archaeologically?
 
+<div align="center"><img src="Everest_Base_Camp_South_Nepal_2012_02.jpg" align="center"></div>
+
+_Photo Robert Kearn, Litter trash rubbish garbage junk at Mount Everest Base Camp - South (Nepal) 2012, [wikimedia commons](https://commons.wikimedia.org/wiki/File:Everest_Base_Camp_South_Nepal_2012_02.jpg), creative commons 3.0_
+
 
 ---
 
@@ -68,5 +72,11 @@ Results will contribute to mountaineering history, environmental anthropology, d
 **Contact us:** archaeology.impossible@gmail.com
 
 **Acknowledgements** This project draws on research supported by the Social Sciences and Humanities Research Council of Canada.
+
+<div align="center"><img src="rajan-dahal--I64We8WuBs-unsplash.jpg"></div>
+
+_Photo by <a href="https://unsplash.com/@globaladventure1998?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rajan Dahal</a> on <a href="https://unsplash.com/photos/a-large-rock-with-writing-on-it-in-front-of-a-mountain--I64We8WuBs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>_
+      
+
 
 <img src="sshrc-fip-full-color-eng.png" width = 100% align=center>

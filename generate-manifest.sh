@@ -17,12 +17,16 @@ echo "[" > "$OUTPUT_FILE"
 # 2. Loop through files
 first=true
 for file in "$UPDATE_DIR"/*.md; do
-    # 'select(di == 0)' picks only the first YAML document (the frontmatter)
-    # we also check that it's an object and has a 'slug' to be safe
-    content=$(yq eval -o=json 'select(di == 0) | select(kind == "map")' "$file" 2>/dev/null)
-    
-    # If content is not empty, add it to our list
-    if [ ! -z "$content" ] && [ "$content" != "null" ]; then
+    echo "$file"
+
+    # Extract only the YAML between the first pair of --- delimiters
+    frontmatter=$(awk 'NR==1 && /^---$/ { next }
+                       /^---$/           { exit }
+                                         { print }' "$file")
+
+    content=$(echo "$frontmatter" | yq eval -o=json 'select(kind == "map")' 2>/dev/null)
+
+    if [ -n "$content" ] && [ "$content" != "null" ]; then
         if [ "$first" = true ]; then
             echo "$content" >> "$OUTPUT_FILE"
             first=false
