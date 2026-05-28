@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "slug": "2026-05-15-consent-for-study",
+    "date": "2026-05-15",
+    "title": "Participants Wanted",
+    "tag": "News", 
+    "file": "updates/2026-05-28-consent-for-study.md"
+  },
+  {
+    "slug": "2026-04-30-project-announcement",
+    "date": "2026-04-30",
+    "title": "Project Announced",
+    "tag": "News",
+    "file": "updates/2026-04-30-project-announcement.md"
+  }
+]

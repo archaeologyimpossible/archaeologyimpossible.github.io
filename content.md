@@ -1,24 +1,35 @@
+
 # The Archaeology Impossible Project 
-<br>
 
 # _Methods for Impractical Places_
+<br>
+<div style="text-align: center;">
+  <a href="#what">What We're Doing</a> |
+  <a href="#theory">Theoretical Context</a> |
+  <a href="#how">How We're Doing This</a> |
+  <a href="#why">Significance</a> |
+  <a href="#help">We need your help!</a> |
+  <a href="#who">Who We Are</a>
+</div>
+
 ## Chomolungma / Sagarmāthā / Everest
 
 Extreme environments like Chomolungma (Mt. Everest) offer unique insights into human behavior under duress. But how do we conduct archaeology in places where archaeologists cannot physically go? 
 
 The **Archaeology Impossible Project** translates methodologies developed for the International Space Station Archaeological Project [(ISSAP)](https://issarchaeology.org/) back to Earth. By focusing on Chomolungma, we explore human impact, neo-colonial appropriation, and the "conquest" of extreme environments through the lens of contemporary digital archaeology.
 
----
 
-### Project Objectives
+<a id="what"></a>
+
+## Project Objectives
 We have three goals:
 
 + **Quantifying/Qualifying Material Change:** Develop computer vision models to map and track material culture changes along Chomolungma's climbing routes (1920s–2020s). 
 + **Computational Synthesis:** Create a temporal knowledge graph, vector embedding models, and other machine learning outputs, to enable natural language querying of complex archaeological patterns, distant views and distant reads of this material.
 + **Knowledge Mobilization:** Design immersive "archaeogaming" experiences that translate those computational models into engaging public interfaces for further research and social impact.
 
----
 
+<a id="theory"></a>
 ## Theoretical Context
 ### The Contemporary Archive of Ascent
 Historically, mountaineering has served as a Western metaphor for civilization’s triumph over nature. From the early colonial expeditions to today’s commercialized industry, the "conquest" of 'Everest' represents an ongoing performance of Western masculinity and nationalism. 
@@ -30,8 +41,7 @@ Unlike many traditional archaeological approaches, which foreground excavation, 
 _Photo Robert Kearn, Litter trash rubbish garbage junk at Mount Everest Base Camp - South (Nepal) 2012, [wikimedia commons](https://commons.wikimedia.org/wiki/File:Everest_Base_Camp_South_Nepal_2012_02.jpg), creative commons 3.0_
 
 
----
-
+<a id="how"></a>
 ## Methodology: The Three-Phase Pipeline
 
 This project is funded by a SSHRC Insight Grant, terminating in 2031.
@@ -50,8 +60,7 @@ To move beyond static text, we will utilize **Gaussian Splatting** and VR to cre
 ### Student Engagement
 We intend to involve students in the MA History, Digital Humanities, and Data Sciences streams at Carleton University in this research. We may also have opportunities for PhD students in Digital History / Public History. We may also recruit a postdoctoral colleague in the area of data visualization (phase III activities). Watch this space.
 
----
-
+<a id="why"></a>
 ## Significance & Future Applications
 Computer vision has been deployed in a number of archaeological contexts. Drawing on the work of the [International Space Station Archaeological Project](https://issarchaeology.org/) we deploy it here as our primary means of examining the 'site' and its changes over time, a place that we are unlikely ourselves to ever be able to visit. 
 
@@ -67,6 +76,13 @@ Results will contribute to mountaineering history, environmental anthropology, d
 
 _Photo by <a href="https://unsplash.com/@sylwiabartyzel?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sylwia Bartyzel</a> on <a href="https://unsplash.com/photos/rocky-mountain-covered-with-snow-during-daytime-amAhBrvmVQc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>_
 
+
+<a id="help"></a>
+## Participate!
+We need your help. If you have been to the region and have taken photos that might help us better understand the human impacts on Chomolungma and climbing culture there, please [take a moment and share with us? We're looking to crowdsource some of the data](/updates.html#2026-05-15-consent-for-study).
+
+
+<a id="who"></a>
 ## People & Support
 
 **Principal Investigators:** [Dr. Shawn Graham (Carleton U)](https://shawngraham.github.io) & [Dr Justin Walsh (Chapman U)](https://www.chapman.edu/our-faculty/justin-walsh.aspx)

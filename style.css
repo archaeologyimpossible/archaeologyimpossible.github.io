@@ -465,7 +465,7 @@ footer {
 }
 
 /* ─── 15. Responsive ────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .container {
     margin: 0;
     padding: 48px 28px;
