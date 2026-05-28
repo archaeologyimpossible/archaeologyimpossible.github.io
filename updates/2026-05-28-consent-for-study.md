@@ -16,7 +16,7 @@ Would you like to help?
 
 ## What We Are Looking For 
 
-We are seeking photographs taken during climbs on Chomolungma that capture any form of material debris or equipment encountered on the mountain, from discarded oxygen cylinders, tent remains, fixed ropes, food or fuel packaging, to abandoned gear, cairns, or any other human-made artefacts. Images from any route, altitude, era, or season are of interest. Recent digital photographs and scans of archival film images are equally welcome. Submitted photographs should not include any individuals and should focus on debris/objects only.
+We are seeking photographs taken during climbs on Chomolungma that capture any form of material debris or equipment encountered on the mountain, from discarded oxygen cylinders, tent remains, fixed ropes, food or fuel packaging, to abandoned gear, cairns, or any other human-made artefacts. Images from any route, altitude, era, or season are of interest. Recent digital photographs and scans of archival film images are equally welcome. (Submitted photographs should try not to include any identifiable individuals when possible; it is not necessary or required for you to indentify people in the images).
 
 ## Here's How!
 
