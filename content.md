@@ -46,15 +46,15 @@ _Photo Robert Kearn, Litter trash rubbish garbage junk at Mount Everest Base Cam
 
 
 ### Phase I: The Digital Fieldwork
-We will aggregate data from archival expedition photography, climbing literature, and public social media posts. Using **Segment Anything (SAM)** or similar approaches and custom computer vision models, we identify equipment, shelter, waste, and infrastructure across decades of imagery, geolocating photos and views.
+We will aggregate data from archival expedition photography, climbing literature, and public social media posts. Using Segment Anything (SAM) or similar approaches and custom computer vision models, we identify equipment, shelter, waste, and infrastructure across decades of imagery, geolocating photos and views.
 
 ### Phase II: The Computational Lab
-Data is then ingested into a **Temporal Knowledge Graph**. This is then transformed via neural networks into **Vector Embedding Models**. This allows researchers to ask "fuzzy" queries like:
+Data is then ingested into a Temporal Knowledge Graph. This is then transformed via neural networks into Vector Embedding Models. This allows researchers to ask "fuzzy" queries like:
 *   *"What material culture patterns correlate with expedition commercialization?"*
 *   *"How has the visual construction of 'climber identity' shifted since 1953?"*
 
 ### Phase III: Archaeogaming & Immersion
-To move beyond static text, we will utilize **Gaussian Splatting** and VR to create immersive environments _representing the data over time, not the geography_. These "data-driven" spaces will be where virtual environments represent underlying patterns of human-environment interaction.
+To move beyond static text, we will utilize Gaussian Splatting and VR to create immersive environments _representing the data over time, not the geography_. These "data-driven" spaces will be where virtual environments represent underlying patterns of human-environment interaction.
 
 ### Student Engagement
 We intend to involve students in the MA History, Digital Humanities, and Data Sciences streams at Carleton University in this research. We may also have opportunities for PhD students in Digital History / Public History. We may also recruit a postdoctoral colleague in the area of data visualization (phase III activities). Watch this space.
