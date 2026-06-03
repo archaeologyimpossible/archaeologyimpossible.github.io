@@ -44,7 +44,6 @@ _Photo Robert Kearn, Litter trash rubbish garbage junk at Mount Everest Base Cam
 <a id="how"></a>
 ## Methodology: The Three-Phase Pipeline
 
-This project is funded by a SSHRC Insight Grant, terminating in 2031.
 
 ### Phase I: The Digital Fieldwork
 We will aggregate data from archival expedition photography, climbing literature, and public social media posts. Using **Segment Anything (SAM)** or similar approaches and custom computer vision models, we identify equipment, shelter, waste, and infrastructure across decades of imagery, geolocating photos and views.
