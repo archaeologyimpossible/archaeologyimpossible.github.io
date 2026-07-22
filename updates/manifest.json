@@ -1,9 +1,16 @@
 [
   {
+    "slug": "2026-07-22-getting-started",
+    "date": "2026-07-22",
+    "title": "Getting Started",
+    "tag": "News",
+    "file": "updates/2026-07-22-getting-started.md"
+  },
+  {
     "slug": "2026-05-15-consent-for-study",
     "date": "2026-05-15",
     "title": "Participants Wanted",
-    "tag": "News", 
+    "tag": "News",
     "file": "updates/2026-05-28-consent-for-study.md"
   },
   {
