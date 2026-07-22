@@ -91,5 +91,7 @@ Mazzolini, E. (2012). The Garbage Question on Top of the World. In S. Foote and 
 
 Morgan, C., & Eve, S. (2012). DIY and digital archaeology: what are you doing to participate? World Archaeology, 44(4), 521–537. https://doi-org.proxy.library.carleton.ca/10.1080/00438243.2012.741810
 
+Schofield, J. (2024). Wicked Problems for Archaeoloogists: Heritage as Transformative Practice. Oxford: Oxford UP.
+
 Walsh, Justin St P., et al. ‘Archaeology in Space: The Sampling Quadrangle Assemblages Research Experiment (SQuARE) on the International Space Station. Report 1: Squares 03 and 05’. PLOS ONE, vol. 19, no. 8, Aug. 2024, p. e0304229. PLoS Journals, https://doi.org/10.1371/journal.pone.0304229.
 
